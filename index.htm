@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style/all.css">
+    <link rel="stylesheet" href="./style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="./img/Crop image project (1) (1).png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIGHTECH</title>
+    <style>
+        body{
+        font-family: 'Red Hat Display', sans-serif;        }
+        .container-fliud{
+            gap: 20px;
+            /* font-family: 'Fira Sans', sans-serif; */
+        }
+        .product:hover #widge{
+            display: inline !important;
+        }
+        .product:hover .add-to-fav{
+            opacity: 1 !important;
+            bottom: 50% !important;
+        }
+        #logout-link{
+            width: 40px;
+            height: 40px;
+            transition: .4s;
+            overflow: hidden;
+        }
+        #logout-link:hover{
+            width: 120px;
+        }
+        #product-start:hover .line{
+            width: 12rem !important;
+            transition: .4s !important;
+        }
+        #category-line:hover .line{
+            width: 6rem !important;
+            transition: .4s !important;
+        }
+        .pros::after{
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background-color:#fff;
+            transition: .4s;
+            opacity: 0;
+        }
+        .pros:hover::after{
+            height: 100% !important;
+            opacity: 1 !important;
+            z-index: -1 !important;
+        }
+        .pros:hover{
+            transform: translateY(-10px) !important;
+            transition: .2s;
+        }
+        .pros:hover p{
+            color: #0180c1 !important;
+        }
+        .pros{
+                position: relative !important;
+            }
+            .pros p{
+                font-weight: 700 !important;
+            }
+            h1,h2,h3{
+                font-weight: 700 !important;
+            }
+            .up:hover{
+                transform: translateY(-10px) !important;
+                transition: .2s !important;
+            }
+            .social .fa-brands:hover{
+                color: #fff;
+            }
+            a{
+                text-decoration: none;
+            }
+            .links a:hover {
+                color: #0180c1 !important;
+            }
+            .accordion-button::after{
+                background-color: white !important;
+                color: #212529 !important;
+                border-radius: 50% !important;
+                padding: 5px !important;
+            }
+            .accordion-button{
+                background-color: #212529 ;
+                color: white;
+            }
+            .accordion-button:not(.collapsed) {
+                background-color: #212529 !important ;
+                color: white !important;
+            }
+            .accordion-item{
+                border: none;
+            }
+            .filter{
+                max-width: 260px !important;
+            }
+            .fa-bars:hover{
+                background-color: #eee !important;
+                color: #0180c1 !important;
+            }
+            .on{
+                background-color: #eee !important;
+                color: #0180c1 !important;
+            }
+            .banner:hover img{
+                transform: scale(1.1) !important;
+                transition: .2s !important;
+            }
+            .banner{
+                overflow: hidden !important;
+            }
+    </style>q1
+</head>
+
+
+<body id="home" class="text-capitalize f-s-13 position-relative" style="background-color: #000000; ">
+        <div id="load" class=" d-none position-absolute d-flex flex-column  align-items-center justify-content-center bg-dark"style="width: 100vw; height: calc(100vh - 90px);z-index: 5555; top:90px" >
+            <div style="position: absolute;left:50%;top:50%;transform: translate(-50%,-50%); z-index: 55885; color: #0180c1;">
+                <img src="./img/Animation - 1696676114228.gif" width="100%" height="100%">
+            </div>
+        </div>
+        <div class=" position-fixed up bottom-0 end-0 text-light rounded bg-primary p-3 m-3 fs-4 ps-4 pe-4" style="z-index: 4444444; cursor: pointer;">
+            <a href="#home" class="text-light text-decoration-none"><i class="fa-solid fa-arrow-up "></i></a>
+        </div>
+    <!-- -----nav----------- -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light   fixed-top border-top border-primary border-5 shadow " style="line-height: 1.5rem;">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="index.htm">
+                <img src="./img/Crop image project (1) (1).png" alt="logo"width="64px" height="64px" class="border-end p-2"><span class="text-uppercase"> <span class="ms-1  " style="color: #0180c1;"> High</span>tech</span>
+            </a>
+            <div class=" collapse navbar-collapse p-2" id="navbarSupportedContent">
+                <div class="d-flex mx-auto col-lg-6 col-md-5 col-xs-12 searchh position-relative ">
+                    <input type="text " id="select-seacrch" placeholder="serch"  class="form-control  w-100 rounded  text-dark bg-light text-light p-3" style=" border:2px solid #0180c1 !important;">
+                    <select  id="select-search" class="btn btn-secondary  p-0 " style="transform: translateX(-20%);">
+                        <div class="bg-dark p-3">
+                            <option >search by name</option>
+                            <option  >search by category</option>
+                            <option  >search by brand</option>
+                        </div>
+                    </select>
+                </div>
+                <ul class="ms-auto navbar-nav d-flex flex-row justify-content-between p-2 ">
+                    <li class="nav-item userInfo d-none d-flex" style="cursor:pointer;">
+                        <img src="./img/Crop image project (1) (1).png"width="40px" id="userImg" height="40px" class="rounded-circle" alt="">
+                        <a class="user ms-2 fs-5  nav-link" id="userData"> abdo </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class=" btn btn-outline-light  ms-2 me-2" id="login-register-link" href="loginRIgesiter.htm">login | register</a>
+                    </li>
+                    <li class="nav-item d-none">
+                        <a class=" btn bg-danger  ms-2 me-2 " id="logout-link" href="#"><i class="fa-solid fa-right-from-bracket"></i> log out</a>
+                    </li>
+                </ul>
+            </div>
+            <span class=" fs-2 position-relative text-light bg-primary  text-center rounded-circle" style="width: 40px; height: 40px;">
+                <i class="fa-solid fa-heart fav-page text-center" id="fav-icon" style="cursor: pointer;font-size: 20px;line-height: 40px; "> </i>
+                <span  id="product-counter-fav" class="position-absolute   translate-middle badge bg-muted text-primary rounded-circle " style="top: 5px; right:-10px;background-color: #eee;" >0</span>
+            </span>
+            <span class=" ms-3 fs-2 position-relative text-light bg-primary  text-center rounded-circle" style="width: 40px; height: 40px;">
+                <i class="fa-solid fa-cart-shopping  text-center" id="cart-icon" style="cursor: pointer;font-size: 20px;line-height: 40px; "> </i>
+                <span  id="product-counter" class="position-absolute   translate-middle badge bg-muted text-primary rounded-circle " style="top: 5px; right:-10px;background-color: #eee;" >0</span>
+            </span>
+            <button class="navbar-toggler btn border-primary  ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+        </div>
+    </nav>
+
+<div class="container-fliud p-1 position-relative body" style="top: 95px;">
+<!-- --------cart------------- -->
+    <div id="cart"   class=" bg-dark text-light fs-5 cart  d-flex flex-column pe-3 ps-3 col-sm-12 col-md-6 col-xl-4 position-fixed  end-0 overflow-auto rounded border border-6 border-primary shadow d-none " style="z-index: 1100;top: 110px; height:calc(100vh - 100px) !important;">
+        <button type="button" class="btn-close btn m-1  text-danger position-sticky top-0 start-0 bg-danger rounded-circle flex-shrink-0" style="z-index: 5002;"></button>
+        <div id="cart-added-products" class="d-flex flex-column mt-2">
+        </div>
+        <div class="position-sticky bottom-0 bg-dark">
+            <div class="cart-product d-flex justify-content-between  flex-row border-bottom mb-3 ">
+                <p>charge</p><p><span id="amount">1.49 </span>L.E</p>
+            </div>
+            <div class="cart-product total d-flex justify-content-between  flex-row">
+                <p>total</p><p><span id="total">1.49</span> L.E</p>
+            </div>
+            <button class="btn  btn-outline-primary mb-2 d-block m-auto w-50" id="checkOut">go to cart</button>
+        </div>
+    </div>
+
+        <!-- carousel -->
+        <div class="  banners d-flex flex-row gap-4 justify-content-center pt-4 flex-wrap w-100" >
+            <div id="carouselExample" class="carousel slide  h-100  col-lg-6 rounded banner" data-bs-ride="carousel" style="height: 65vh !important;">
+                <div class="carousel-inner h-100 rounded" style="overflow: hidden !important;">
+                    <div class="carousel-item active rounded h-100 position-relative"  >
+                        <div class="position-absolute text-center p-3 w-50 " style="top:30% !important;z-index: 12;">
+                            <p> Starting At Only $2,500 </p>
+                            <h1>Made New Design Fashion </h1>
+                            <button class="btn btn-outline-primary">shop now</button>
+                        </div>
+                        <img src="./Bigsoho - Multipurpose Store -Password- demo- - 9-28-2023 2-48-01 PM/image-01.jpg" class="d-block rounded w-100 h-100" alt="...">
+                    </div>
+                    <div class="carousel-item rounded h-100 position-relative" >
+                        <div class="position-absolute text-center p-3 w-50 " style="top:30% !important;z-index: 12;">
+                            <p> Starting At Only $500 </p>
+                            <h1>Lenovo 300 FHD </h1>
+                            <button class="btn btn-outline-primary">shop now</button>
+                        </div>
+                        <img src="./Bigsoho - Multipurpose Store -Password- demo- - 9-28-2023 2-48-01 PM/image-02.jpg" class="rounded d-block w-100 h-100" alt="...">
+                    </div>
+                </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span  aria-hidden="true"><i class="fa-solid fa-angles-left bg-dark text-primary rounded-circle p-3"></i></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span  aria-hidden="true"><i class="fa-solid fa-angles-right bg-dark text-primary rounded-circle p-3"></i></span>
+                    </button> 
+            </div>
+            <div class=" h-100 position-relative banner" style="height: 65vh !important;">
+                <div class="position-absolute text-center text-light " style="top: 10% !important;z-index: 12;">
+                    <p>25% Discount</p>
+                    <h2>Cosmic Byte Gs430 Wired Headset</h2>
+                </div>
+                <img src="./Bigsoho - Multipurpose Store -Password- demo- - 9-28-2023 2-48-01 PM/image-03.jpg" class="rounded h-100 ">
+            </div>
+            <div class="d-flex banners-last-divs flex-column flex-wrap  justify-content-between gap-4   "style="overflow: hidden;" >
+                <div class="position-relative  banner">
+                    <div class="position-absolute text-center text-light  p-3 w-50" style="top: 10% !important;z-index: 12;">
+                        <p>20% Discount</p>
+                        <h2>New Lounge Chair</h2>
+                        <button class="btn btn-outline-light">shop now</button>
+                    </div>
+                    <img src="./Bigsoho - Multipurpose Store -Password- demo- - 9-28-2023 2-48-01 PM/image-04.jpg" class="rounded "width="100%"  height="98%" >
+                </div>
+                <div class="position-relative banner">
+                    <div class="position-absolute text-center text-light p-3 w-50" style="top: 10% !important;z-index: 12;">
+                        <p>30% Discount</p>
+                        <h2>Xbox Wireless Controlle</h2>
+                        <button class="btn btn-outline-light">shop now</button>
+                    </div>
+                    <img src="./Bigsoho - Multipurpose Store -Password- demo- - 9-28-2023 2-48-01 PM/image-05.jpg" class="rounded "width="100%"   height="98%" >
+                </div>
+            </div>
+        </div>
+
+
+        <!-- advantage container -->
+        <div class="container-lg d-flex flex-row flex-wrap justify-content-center gap-3 p-2  text-light">
+            <div class="p-3 pt-5 pb-5 pros rounded shadow border border-light   text-center " style="width: 200px;height: 200px;">
+                <img src="./img/Untitled.png" alt="سرعه & جودة & امان">
+                <p class="pt-3">سرعه & جودة & امان</p>
+            </div>
+            <div class="p-3 pt-5 pb-5 pros rounded shadow border border-light   text-center " style="width: 200px;height: 200px;">
+                <img src="./img/Untitled1.png" alt=" 100 % ضمان على المنتجات">
+                <p class="pt-3">100 % ضمان على المنتجات</p>
+            </div>
+            <div class="p-3 pt-5 pb-5 pros rounded shadow border border-light   text-center " style="width: 200px;height: 200px;">
+                <img src="./img/Untitled2.png" alt=" استرجاع المنتجات">
+                <p class="pt-3">استرجاع المنتجات</p>
+            </div>
+            <div class="p-3 pt-5 pb-5 pros rounded shadow border border-light   text-center " style="width: 200px;height: 200px;">
+                <img src="./img/Untitled3.png" alt="دعم متواصل على مدار اليوم">
+                <p class="pt-3">دعم متواصل على مدار اليوم</p>
+            </div>
+            <div class="p-3 pt-5 pb-5 pros rounded shadow border border-light   text-center " style="width: 200px;height: 200px;">
+                <img src="./img/Untitled4.png" alt="جودة عاليه">
+                <p class="pt-3"> جودة عاليه</p>
+            </div>
+            
+        </div>
+    <div id="product-start" class=" m-3 text-center text-dark p-5 rounded" style="background: url(./img/22890802_6597071.jpg);background-position: center !important;background-size: cover !important">
+        <h1 style="letter-spacing: 2px;color: #fff;">products</h1>
+        <div class=" border m-auto border-primary line" style="width: 5rem;"></div>
+    </div>
+    <!-- toast -->
+    <div id="toastContainer" class="position-fixed  start-0 p-3" style="z-index: 11000 ;top:10%">
+    </div>
+
+<!-- ---product Container--- -->
+    <div class=" d-flex flex-row justify-content-center gap-4">
+        <div class="filter d-flex flex-column text-light col-lg-3 col-md-0" id="filter">
+            <div class="bg-secondary text-dark p-3 d-flex flex-row justify-content-between">
+                <h2>filter</h2>
+                <i class="fa-solid fa-filter" style="line-height: 40px;"></i>
+            </div>
+            <div class="accordion-dark accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item bg-dark text-light category" >
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light border-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        <h4>category</h4>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                        <div class="accordion-body d-flex flex-column p-2">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-dark text-light brand"  >
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        <h4>brand</h4>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                        <div class="accordion-body d-flex flex-column p-2 ">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-dark text-light stock" >
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        <h4>stock</h4>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                        <div class="accordion-body d-flex flex-column p-2">
+                            <div class="d-flex " style="cursor:pointer" >
+                                <input type="checkbox" id="instock" stock>
+                                <label for="instock" id="in-stock" class="m-2 text-light" style="font-weight: 900;">in stock</label>
+                            </div>
+                            <div class="d-flex " style="cursor:pointer" >
+                                <input type="checkbox" id="outstock" outstock>
+                                <label for="outstock" id="out-of-stock" class="m-2 text-light" style="font-weight: 900;">out stock</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-dark text-light price" >
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light collapsed border-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                        <h4>price</h4>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                        <div class="accordion-body d-flex flex-column p-2">
+                            <div class="d-flex p-2 " style="cursor:pointer" >
+                                <label for="from" class="m-2 text-light " style="font-weight: 900;">from</label>
+                                <input type="number" id="from" value="0" placeholder="0" style="width: 25%;"> 
+                                <label for="to" class="m-2 text-light " style="font-weight: 900;">to</label>
+                                <input type="number" id="to" value="99999" placeholder="9999" style="width: 25%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-dark text-light rating" >
+                    <h2 class="accordion-header">
+                        <button class="accordion-button bg-dark text-light collapsed border-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                        <h4>rating</h4>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                        <div class="accordion-body d-flex flex-column p-2">
+                            <div class="d-flex p-2 "  >
+                                <input type="checkbox" id="more-four" rating="4"   > 
+                                <label for="more-four" class="m-2 text-light " style="font-weight: 700;cursor:pointer">
+                                    4 stars 
+                                    <span class="text-warning d-block ">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="d-flex p-2 " >
+                                <input type="checkbox" id="more-three" rating="3" > 
+                                <label for="more-three" class="m-2 text-light " style="font-weight: 700;cursor:pointer">
+                                    3 stars 
+                                    <span class="text-warning d-block ">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="d-flex p-2 "  >
+                                <input type="checkbox" id="more-two"  rating="2" >  
+                                <label for="more-two" class="m-2 text-light " style="font-weight: 700;cursor:pointer"> 
+                                    2 stars 
+                                    <span class="text-warning d-block ">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="d-flex p-2 "  >
+                                <input type="checkbox" id="more-one"  rating="1"   > 
+                                <label for="more-one" class="m-2 text-light " style="font-weight: 700;cursor:pointer">
+                                    1 stars 
+                                    <span class="text-warning d-block ">
+                                        <i class="fa-solid fa-star"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column col-lg-9">
+            <div class="d-flex flex-row justify-content-center   align-items-center flex-wrap rounded gap-2 text-light mb-2 mt-2 bg-dark ps-2 pe-2 pt-3 pb-3" >
+
+                <button  class="btn btn-primary me-auto filter-mob" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    filter <i class="fa-solid fa-filter" style="line-height: 40px;"></i>
+                </button>
+                <div class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                    <div class="offcanvas-header d-block">
+                        <div class="filter w-100 text-light pe-3 pt-3" style="max-width: 100% !important">
+                        <button type="button" class="btn-close btn bg-danger  d-block ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="bg-secondary text-dark p-3 d-flex flex-row justify-content-between">
+                            <h2>filter</h2>
+                            <i class="fa-solid fa-filter" style="line-height: 40px;"></i>
+                        </div>
+                        <div class="accordion-dark accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item bg-dark text-light category" >
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button bg-dark text-light border-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    <h4>category</h4>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                    <div class="accordion-body d-flex flex-column p-2">
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-dark text-light brand"  >
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button bg-dark text-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                    <h4>brand</h4>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                    <div class="accordion-body d-flex flex-column p-2 ">
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-dark text-light stock" >
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button bg-dark text-light collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                    <h4>stock</h4>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                    <div class="accordion-body d-flex flex-column p-2">
+                                        <div class="d-flex " >
+                                            <input type="checkbox" id="instock1" stock>
+                                            <label for="instock1" id="in-stock" class="m-2 text-light" style="font-weight: 900;cursor: pointer;">in stock</label>
+                                        </div>
+                                        <div class="d-flex "  >
+                                            <input type="checkbox" id="outstock1" outstock>
+                                            <label for="outstock1" id="out-of-stock" class="m-2 text-light" style="font-weight: 900; cursor: pointer;">out stock</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-dark text-light price">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button bg-dark text-light collapsed border-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                                    <h4>price</h4>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                                    <div class="accordion-body d-flex flex-column p-2">
+                                        <div class="d-flex p-2 " style="cursor:pointer" >
+                                            <label for="from" class="m-2 text-light " style="font-weight: 900;">from</label>
+                                            <input type="number" id="from" value="0" placeholder="0" style="width: 25%;"> 
+                                            <label for="to" class="m-2 text-light " style="font-weight: 900;">to</label>
+                                            <input type="number" id="to" value="99999" placeholder="9999" style="width: 25%;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-dark text-light rating">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button bg-dark text-light collapsed border-none" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                                    <h4>rating</h4>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                                    <div class="accordion-body d-flex flex-column p-2">
+                                        <div class="d-flex p-2 "  >
+                                            <input type="checkbox" id="more-four1" rating="4"   > 
+                                            <label for="more-four1" class="m-2 text-light " style="font-weight: 700;cursor:pointer">
+                                                4 stars 
+                                                <span class="text-warning d-block ">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="d-flex p-2 " >
+                                            <input type="checkbox" id="more-three1" rating="3" > 
+                                            <label for="more-three1" class="m-2 text-light " style="font-weight: 700;cursor:pointer">
+                                                3 stars 
+                                                <span class="text-warning d-block ">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="d-flex p-2 "  >
+                                            <input type="checkbox" id="more-two1"  rating="2" >  
+                                            <label for="more-two1" class="m-2 text-light " style="font-weight: 700;cursor:pointer"> 
+                                                2 stars 
+                                                <span class="text-warning d-block ">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="d-flex p-2 "  >
+                                            <input type="checkbox" id="more-one1"  rating="1"   > 
+                                            <label for="more-one1" class="m-2 text-light " style="font-weight: 700;cursor:pointer">
+                                                1 stars 
+                                                <span class="text-warning d-block ">
+                                                    <i class="fa-solid fa-star"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <p class="m-0" style="line-height: 40px;font-weight: 700;"><span id="products-number" >100</span> product </p>
+                <div class="d-flex">
+                    <p style="line-height: 40px; margin: 0;font-weight: 700;">sort by : </p>
+                    <select class=" ms-2 rounded" id="selectedSort" style="line-height: 40px;height: 40px;">
+                        <option disabled selected>choose sorting type </option>
+                        <option >alphabet, A to Z</option>
+                        <option >alphabet, Z to A</option>
+                        <option >price, low to high</option>
+                        <option >price, high to low</option>
+                        <option >rating, low to high</option>
+                        <option >rating, high to low</option>
+                    </select>
+                </div>
+                <!-- <div class="icons" style="line-height: 40px;font-weight: 700;">
+                    <i class="fa-solid fa-bars p-2 border border-light rounded me-2" style="cursor: pointer;" ></i>
+                    <i class="fa-solid fa-bars p-2 border border-light rounded on" style="transform: rotate(90deg) ;cursor: pointer;"></i>
+                </div> -->
+            </div>
+            <div id="products" class=" d-flex flex-row gap-3 flex-wrap justify-content-center text-light " >
+            </div ><!-- /container -->
+            <nav  class="mx-auto mt-3">
+                <ul class="pagination">
+
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+    <footer class="footer container-fliud w-100 bg-dark mt-3 ">
+        <div class="container d-flex flex-row flex-wrap justify-content-between text-light p-2 g-3">
+            <div class="col-xs-12 col-lg-4 col-md-6 ">
+                <h2 class="border-bottom border-primary p-3">about us</h2>
+                <div>
+                    <a href="index.htm" class="text-decoration-none">
+                        <img src="./img/Crop image project (1) (1).png" width="50px"height="50px" class="rounded-circle " alt="logo">
+                        <span class="text-uppercase text-light fs-3 ms-2 p-2" ><span class="text-primary" >high</span>tech</span>
+                    </a>
+                </div>
+                <p class="about-us p-2 pe-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint atque eius quisquam magni,
+                    unde porro ad quod illo labore expedita itaque placeat 
+                </p>
+                <p class="p-2"> copyright 2023 &copy; <span class="text-primary">abuseta</span></p>
+            </div>
+            <div class="col-xs-12 col-lg-3 col-md-5 ">
+                <h2 class="border-bottom border-primary p-3 ">useful links</h2>
+                <div class="links d-flex flex-column gap-3 fw-bold">
+                    <a href="profil.htm" class="text-light "> profile</a>
+                    <a href="#"class="text-light ">privay policy</a>
+                    <a href="#"class="text-light ">FAQs</a>
+                    <a href="#"class="text-light ">servies</a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-4 col-md-6">
+                <h2 class="border-bottom border-primary p-3 ">Contact info</h2>
+                <p class="p-1 fw-bold    " >Contact us and we'll get back to you within 24 hours.</p>
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    123 Fake ST NoWhre Country</p>
+                    <p>
+                    <i class="fa-regular fa-envelope "></i>
+                    info@website.com</p>
+                    <div class="social d-flex flex-row gap-3 fs-3">
+                        <a href="#"> <i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </div><!-- /scocial -->
+            </div>
+        </div>
+    </footer>
+</div>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/loginRegister.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

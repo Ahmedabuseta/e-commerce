@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style/all.css">
+    <link rel="stylesheet" href="./style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login | sign up</title>
+    <style>
+        .product:hover #widge{
+            display: inline !important;
+        }
+        body{
+            height: 100vh;
+        }
+        input:focus{
+            outline: none !important;
+        }
+        .overlay{
+            width: 100%;
+            height: 100%;
+            z-index: 22;
+            /* background: linear-gradient(45deg,#020302 50%,rgba(24, 24, 27, 0.642)); */
+            transition: 1s !important;
+            animation: zigzag .2s normal 0s 1 forwards ;
+        }
+        .overlay-1{
+            width: 0%;
+            height: 100%;
+            z-index: 235;
+            /* background: linear-gradient(-45deg,#020302 50%,rgba(24, 24, 27, 0.642)); */
+            transition: 1s !important;
+            animation: zigzag .4s normal 0s 1 forwards ;
+        }
+        @keyframes zigzag{
+            0%{
+                width: 0%;
+            }
+            100%{
+                width: 100%;
+            }
+        }
+        .line::after{
+            position: absolute;
+            content: "or";
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #202527;
+            color: #0180c1;
+            padding: 2px;
+            text-align: center;
+        }
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .error{
+            background-color: rgb(241, 182, 182) !important;
+            color: rgb(190, 62, 22) !important;
+            width: 100%;
+            padding: 1rem;
+        }
+
+    </style>
+</head>
+
+
+<body  class="text-capitalize f-s-13 " style="background-color: #181a1b;">
+    <!-- -----nav----------- -->
+    <nav class="navbar navbar-expand-sm bg-dark text-light " style="line-height: 1.5rem;">
+        <div class="container-fluid  text-light ">
+            <a class="navbar-brand" href="index.htm">
+            <img src="./img/Crop image project (1) (1).png" alt="logo"width="64px" height="64px" class="border-end p-2"><span class="text-uppercase  text-light"> <span class="ms-1  " style="color: #0180c1;"> High</span>tech</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fliud position-relative w-100 p-0 col-xs-12 body" >
+        <div id="proccess" class="d-none d-flex flex-column border border-secondary align-items-center justify-content-center rounded col-md-6 col-xs-12 col-lg-3 col-xl-2 top-50  bg-dark p-3   position-absolute" style="left:50%; transform: translate(-50%,-50%); z-index:5555; color: #0180c1;">
+            <p  id="loading"></p>
+            <div class="spinner-border text-primary " role="status"></div>
+        </div>
+        <div class="overlay  position-relative d-flex justify-content-around p-4 align-items-center text-light flex-wrap " >
+            <form action="#" class="d-flex flex-column gap-2 align-items-center col-xs-12 col-md-8 col-lg-4 p-4 "style="width: 512px !important;">
+                <h2 class="text-primary text-uppercase align-self-start">login</h2>
+                <p id="errorSignIn"></p>
+                <label for="username" class="w-100 position-relative">
+                    <p class="m-1 text-mute">email or username*</p>
+                    <i class="fa-solid fa-at position-absolute  top-50 text-primary" style="right: 5px;transform: translateY(50%);"></i>
+                    <input type="text" name="username" id="username" placeholder="email or username*" class="w-100  bg-dark text-light p-2" style="border: none; border-bottom:2px solid #0180c1 !important;" required>
+                </label>
+                <label for="password" class="w-100 position-relative">
+                    <p class="m-1 text-mute">password*</p>
+                    <i class="fa-solid fa-lock position-absolute  top-50 text-primary" style="right: 5px;transform: translateY(50%);"></i>
+                    <input type="password" name="password" id="password" placeholder="password" class="w-100  bg-dark text-light p-2"style="border: none; border-bottom:2px solid #0180c1 !important;" required >
+                </label>
+                <div class="flex-row d-flex justify-content-between align-items-center w-100 mb-3">
+                    <label for="remember me" ><input type="checkbox" name="remember me" id="remember me"> remember me</label>
+                    <a href="#" class="text-mute " >forget password</a>
+                </div>
+                <button type="submit" class="btn btn-outline-primary w-100 mb-4" id="signIn">login</button>
+                <div class="bg-light w-100 line position-relative mb-3" style="height: 1px;"></div>
+                <button class="btn btn-outline-primary w-100 mt-2"><i class="fa-brands fa-google"></i> google</button>
+                <button class="btn btn-outline-primary w-100"><i class="fa-brands fa-facebook"></i> facebook</button>
+            </form>
+            <div class="mx- p-5 rounded-pill col-xs-12 col-lg-4 " style="background-color: transparent;backdrop-filter: blur(1px);">
+                <h1>welcom to <span class="text-uppercase"> <span class="ms-1  " style="color: #0180c1;"> High</span>tech</span></h1>
+                <p>if you don't have an account </p>
+                <button class="btn btn-outline-primary w-100 no-account" >sign up</button>
+            </div>
+        </div>
+
+        
+        <div class="overlay-1 d-none d-flex justify-content-around p-4 align-items-center text-light flex-wrap">
+            <div class="mx- p-5 rounded-pill col-xs-12 col-lg-4 " style="background-color: transparent;backdrop-filter: blur(1px);">
+                <h1>welcom to <span class="ms-1  " style="color: #0180c1;"> High</span>tech</span></h1>
+                <p>if you  have an account </p>
+                <button class="btn btn-outline-primary w-100 have-account">sign in</button>
+            </div>
+            <form action="#" class="d-flex flex-column gap-2 align-items-center col-12 col-md-8 col-lg-4 p-4 ">
+                <h2 class="text-primary">sign up</h2>
+                <p id="error"></p>
+                <label for="userNameUp" class="w-100 position-relative">
+                    <p class="m-1 text-mute">username*</p>
+                    <i class="fa-solid fa-user position-absolute  top-50 text-primary" style="right: 5px;transform: translateY(50%);"></i>
+                    <input type="text" name="username" id="userNameUp" placeholder="username"  class="w-100  bg-dark text-light p-2" style="border: none; border-bottom:2px solid #0180c1 !important;" required>
+                </label>
+                <label for="emailUp" class="w-100 position-relative">
+                    <p class="m-1 text-mute">email*</p>
+                    <i class="fa-solid fa-at position-absolute  top-50 text-primary" style="right: 5px;transform: translateY(50%);"></i>
+                    <input type="email" name="email" id="emailUp"placeholder="email" class="w-100  bg-dark text-light p-2" style="border: none; border-bottom:2px solid #0180c1 !important;" required>
+                </label>
+                <label for="phoneUp" class="w-100 position-relative">
+                    <p class="m-1 text-mute">pnone*</p>
+                    <i class="fa-solid fa-phone-volume position-absolute  top-50 text-primary" style="right: 5px;transform: translateY(50%);"></i>
+                    <input type="number" name="pnone" id="phoneUp" placeholder="phone number"  class="w-100  bg-dark text-light p-2" style="border: none; border-bottom:2px solid #0180c1 !important;"required>
+                </label>
+                <label for="passwordUp" class="w-100 position-relative ">
+                    <p class="m-1 text-mute">password*</p>
+                    <i class="fa-solid fa-lock position-absolute  top-50 text-primary" style="right: 5px;transform: translateY(50%);"></i>
+                    <input type="password" name="password" id="passwordUp" placeholder="password"  class="w-100  bg-dark text-light p-2" style="border: none; border-bottom:2px solid #0180c1 !important;"required>
+                </label>
+                <label for="user-image" class="w-100 position-relative bg-dark mb-3"style="border-bottom:2px solid #0180c1 !important;">
+                    <p class="m-1 text-mute">image*</p>
+                    <i class="fa-solid fa-image position-absolute  top-50 text-primary" style="right: 5px;transform: translateY(50%);"></i>
+                    <span class="text-center w-100 text-mute"> click to selet your photo</span>
+                    <input type="file" id="user-image"  class=" " style="opacity: 0;height:.1px;width: 1px;"required>
+                </label>
+                <button type="submit" class="btn btn-outline-primary w-100 mb-4" id="signUP">sign up</button>
+                <div class="bg-light w-100 line position-relative mb-3" style="height: 1px;"></div>
+                <button class="btn btn-outline-primary w-100 mt-2"><i class="fa-brands fa-google"></i> google</button>
+                <button class="btn btn-outline-primary w-100"><i class="fa-brands fa-facebook"></i> facebook</button>
+            </form>
+
+        </div>
+        <!-- --------cart------------- -->
+        <div id="cart"   class="d-none bg-dark text-light fs-5 cart  d-flex flex-column pe-3 ps-3 col-sm-12 col-md-6 col-xl-4 position-fixed  end-0 overflow-auto rounded border border-4 border-success shadow  " style="z-index: 1100;top: 110px; min-height: 200px; max-height:85vh;">
+            <button type="button" class="btn-close btn m-1  text-danger position-sticky top-0 start-0 bg-danger rounded-circle flex-shrink-0" style="z-index: 5002;"></button>
+            <div id="cart-added-products" class="d-flex flex-column mt-2">
+            </div>
+            <div class="position-sticky bottom-0 bg-dark">
+                <div class="cart-product d-flex justify-content-between  flex-row border-bottom mb-3 ">
+                    <p>charge</p><p><span id="amount">1.49 </span>L.E</p>
+                </div>
+                <div class="cart-product total d-flex justify-content-between  flex-row">
+                    <p>total</p><p><span id="total">1.49</span> L.E</p>
+                </div>
+                <button class="btn  bg-success mb-2 d-block m-auto w-50" id="checkOut">check out</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/loginRegister.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

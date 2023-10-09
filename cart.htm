@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style/all.css">
+    <link rel="stylesheet" href="./style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<link rel="icon" href="./img/Crop image project (1) (1).png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <style>
+        body{
+            box-sizing: border-box;
+        }
+        .product:hover #widge{
+            display: inline !important;
+        }
+        #logout-link{
+            width: 40px;
+            height: 40px;
+            transition: .4s;
+            overflow: hidden;
+        }
+        #logout-link:hover{
+            width: 120px;
+        }
+    </style>
+</head>
+
+
+<body  class="text-capitalize f-s-13 mx-auto bg-dark" id="home">
+    <div class=" position-fixed up bottom-0 end-0 text-light rounded bg-primary p-3 m-3 fs-4 ps-4 pe-4" style="z-index: 4444444; cursor: pointer;">
+        <a href="#home" class="text-light text-decoration-none"><i class="fa-solid fa-arrow-up "></i></a>
+    </div>
+    <!-- -----nav----------- -->
+    <nav class="navbar navbar-expand-sm  text-light  bg-dark fixed-top border-top border-primary border-5  p-3" style="line-height: 1.5rem;">
+        <div class="container-fluid ">
+            <a class="navbar-brand" href="index.htm">
+                <img src="./img/Crop image project (1) (1).png" alt="logo"width="64px" height="64px" class="border-end p-2"><span class="text-uppercase text-light"> <span class="ms-1  " style="color: #0180c1;"> High</span>tech</span>
+            </a>
+            <button class="navbar-toggler btn border-primary ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+            <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="msauto navbar-nav ms-auto ">
+                    <li class="nav-item userInfo d-none " style="cursor:pointer;">
+                        <img src="./img/Crop image project (1) (1).png"width="40px" height="40px" class="rounded-circle" alt="">
+                        <a class="user ms-2 fs-5  nav-link" id="userData"> abdo </a>
+                    </li>
+                </ul>
+            </div>
+            <span class="ms-3  fs-2 position-relative text-light bg-primary  text-center rounded-circle" style="width: 45px; height: 45px;">
+                <i class="fa-solid fa-heart  text-center" id="fav-icon" style="cursor: pointer;font-size: 20px;line-height: 45px; "> </i>
+                <!-- <span  id="product-counter" class="position-absolute   translate-middle badge bg-muted text-primary rounded-circle " style="top: 5px; right:-10px;background-color: #eee;" >0</span> -->
+            </span>
+        </div>
+    </nav>
+
+    <!-- toast -->
+    <div id="toastContainer" class="position-fixed  start-0 bottom-0 p-3" style="z-index: 11000 ;">
+    </div>
+    
+    <div class="container-lg  position-absolute w-100 mx-auto p-3 flex-row justify-content-center align-items-center gap-4 flex-wrap text-light d-flex start-50" style="top: 115px !important;transform: translateX(-50%);">
+        <!-- --------cart------------- -->
+        <div id="cart"   class="-none bg-dark  cart  d-flex flex-column  col-sm-12 col-lg-8 col-md-7 col-sm-12 overflow-auto rounded  display-cart shadow   p-3" >
+            <div id="cart-added-products" class="d-flex flex-column mt-0">
+            </div>
+        </div>
+        <div class="bg-dark rounded p-3 d-flex flex-column justify-content-center gap-3 display-cart" style="width: 300px; max-height: 250px;">
+            <div class="cart-product d-flex justify-content-around flex-row border-bottom ">
+                <p>charge</p><p><span id="amount">49.99 </span>L.E</p>
+            </div>
+            <div class="cart-product total d-flex justify-content-around  flex-row">
+                <p>total</p><p><span id="total">49.99</span> L.E</p>
+            </div>
+            <button class="btn btn-outline-primary mb-2 d-block mx-auto w-50 p-2" id="checkOut">check out</button>
+        </div>
+        <div class="overflow-auto d-none checkout d-flex flex-row  " >
+            <div class="w-50 h-50" style="max-width: 500px; max-height: 500px;">
+                <img src="./img/3d-hand-making-cashless-payment-from-smartphone.png" class="w-100 h-100" alt="">
+            </div>
+            <div>
+                <div class="card-name p-2">
+                    <h4 class="border-bottom p-1">payment details</h4>
+                    <label for="cardName" class=" mb-1" style="font-size: 12px;">card name*</label>
+                    <div class="position-relative">
+                        <i class="fa-regular fa-user position-absolute top-50 "style="right:0;transform:translate(-50%,-50%);"></i>
+                        <input type="text" id="cardNAme" class="w-100 rounded-pill border-none text-mute p-1 ps-2"placeholder="card name" style="outline: none;border: none; background-color: #181a1b;">
+                    </div>
+                </div>
+                <div class="card-number p-2">
+                    <label for="cardNumber" class=" mb-1" style="font-size: 12px;">card number*</label>
+                    <div class="position-relative">
+                        <i class="fa-regular fa-credit-card position-absolute top-50 "style="right:0;transform:translate(-50%,-50%);"></i>
+                        <input type="text"  id="cardNAme" class="w-100 rounded-pill border-none text-mute p-1 ps-2"placeholder="card number" style="outline: none;border: none; background-color: #181a1b;">
+                    </div>
+                </div>
+                <div class="card-details flex-row justify-content-between d-flex p-2">
+                    <div  style="width: 40%;">
+                        <label for="cardNumber" class=" mb-1" style="font-size: 12px;">Exp data*</label>
+                        <div class="expDate position-relative">
+                            <i class="fa-solid fa-calendar-days position-absolute top-50 "style="right:0;transform:translate(-50%,-50%);"></i>
+                            <input type="text" placeholder="exp date" name="date" id="date" class="w-100 rounded-pill border-none text-mute p-1 ps-2"style="outline: none;border: none; background-color: #181a1b;">
+                        </div>
+                    </div>
+                    <div class=""  style="width: 40%;">
+                        <label for="cardNumber" class=" mb-1" style="font-size: 12px;">cvv*</label>
+                        <div class="cvv position-relative">
+                            <i class="fa-solid fa-lock position-absolute top-50 "style="right:0;transform:translate(-50%,-50%);"></i>
+                            <input type="text" placeholder="cvv" name="cvv" id="cvv" class="w-100 rounded-pill border-none text-mute p-1 ps-2"style="outline: none;border: none; background-color: #181a1b;">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-details flex-row justify-content-between d-flex p-2">
+                    <div  style="width: 40%;">
+                        <label for="cardNumber" class=" mb-1" style="font-size: 12px;">gov*</label>
+                        <div class="expDate position-relative">
+                            <i class="fa-solid fa-city position-absolute top-50 "style="right:0;transform:translate(-50%,-50%);"></i>
+                            <input type="text" placeholder="exp date" name="date" id="date" class="w-100 rounded-pill border-none text-mute p-1 ps-2"style="outline: none;border: none; background-color: #181a1b;">
+                        </div>
+                    </div>
+                    <div class=""  style="width: 40%;">
+                        <label for="cardNumber" class=" mb-1" style="font-size: 12px;">city*</label>
+                        <div class="cvv position-relative">
+                            <i class="fa-solid fa-city position-absolute top-50 "style="right:0;transform:translate(-50%,-50%);"></i>
+                            <input type="text" placeholder="cvv" name="cvv" id="cvv" class="w-100 rounded-pill border-none text-mute p-1 ps-2"style="outline: none;border: none; background-color: #181a1b;">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-number p-2">
+                    <label for="cardNumber" class=" mb-1" style="font-size: 12px;">address...*</label>
+                    <div class="position-relative">
+                        <i class="fa-solid fa-map-location-dot position-absolute top-50 "style="right:0;transform:translate(-50%,-50%);"></i>
+                        <textarea  id="cardNAme" class="w-100 rounded border-none text-mute p-1 ps-2"placeholder="card number" style="outline: none;border: none; background-color: #181a1b;"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="p-2 btn btn-outline-primary w-50 d-block mx-auto order" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        confirm order
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog model-dialog-center">
+                        <div class="modal-content bg-dark">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-3 text-light mx-auto" id="exampleModalLabel">thanks for order</h1>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fav-cart-container d-flex flex-column flex-wrap align-items-center justify-content-center gap-3">
+            <div class=" d-flex flex-column align-items-start text-light bg-dark w-100">
+                <div class="flex-row d-flex justify-content-between gap-3 w-100 bg-secondary p-3 rounded">
+                    <h1 class=" border-bottom border-2 border-primary line">fav</h1>
+                    <button class="btn btn-outline-light fs-5 p-2 ms-auto go-to-products">go to procuts</button>
+                </div>
+                <div class="fav d-flex flex-row flex-wrap justify-content-center gap-3 p-3  text-light bg-dark"></div>
+            </div>
+        </div>    
+        <footer class="footer container-fliud  d-block w-100 bg-dark mt-3 display-cart">
+            <div class="container d-flex flex-row flex-wrap justify-content-between text-light p-2 g-3">
+                <div class="col-xs-12 col-lg-4 col-md-6 ">
+                    <h2 class="border-bottom border-primary p-3">about us</h2>
+                    <div>
+                        <a href="index.htm" class="text-decoration-none">
+                            <img src="./img/Crop image project (1) (1).png" width="50px"height="50px" class="rounded-circle " alt="logo">
+                            <span class="text-uppercase text-light fs-3 ms-2 p-2" ><span class="text-primary" >high</span>tech</span>
+                        </a>
+                    </div>
+                    <p class="about-us p-2 pe-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint atque eius quisquam magni,
+                        unde porro ad quod illo labore expedita itaque placeat 
+                    </p>
+                    <p class="p-2"> copyright 2023 &copy; <span class="text-primary">abuseta</span></p>
+                </div>
+                <div class="col-xs-12 col-lg-3 col-md-5 ">
+                    <h2 class="border-bottom border-primary p-3 ">useful links</h2>
+                    <div class="links d-flex flex-column gap-3 fw-bold">
+                        <a href="profil.htm" class="text-light "> profile</a>
+                        <a href="#"class="text-light ">privay policy</a>
+                        <a href="#"class="text-light ">FAQs</a>
+                        <a href="#"class="text-light ">servies</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-4 col-md-6">
+                    <h2 class="border-bottom border-primary p-3 ">Contact info</h2>
+                    <p class="p-1 fw-bold    " >Contact us and we'll get back to you within 24 hours.</p>
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        123 Fake ST NoWhre Country</p>
+                        <p>
+                        <i class="fa-regular fa-envelope "></i>
+                        info@website.com</p>
+                        <div class="social d-flex flex-row gap-3 fs-3">
+                            <a href="#"> <i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        </div><!-- /scocial -->
+                </div>
+                
+            </div>
+        </footer>
+        
+    </div>
+
+
+    <script src="./js/loginRegister.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
