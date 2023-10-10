@@ -11,7 +11,7 @@ let showTotalPrice  = document.getElementById('total');
 let itemNum = document.getElementById('item-num')
 const controlsContainer = document.getElementById("controls");
 let totalPrice = 1.49 ;
-
+let dynmicList= []
 let prevButton = document.querySelector("#prev")
 let nextButton = document.querySelector("#next")
 
@@ -44,7 +44,7 @@ let prdcts = []
 let allProductsContainer = document.querySelector("#products");
 let bannerContainer      = document.querySelector(".carousel-inner");
 let bannerSwitchies      = document.querySelector(".carousel-indicators")
-let selectedSort =document.getElementById("selectedSort")
+let selected =document.getElementById("selectedSort")
 
 // open close cart
 cartIcon.addEventListener("click",function(){
@@ -83,6 +83,7 @@ function  loadProducts(){
       drawData(response.data.products)
     })
     productsFetchedFromApi = response.data.products
+
     drawPagination(productsFetchedFromApi.length,20)
     // drawData (response.data.products)
     let displayedProdecuts=productsFetchedFromApi.slice(1,21)
@@ -267,43 +268,50 @@ function filter(arr){
         let brandFilter =[]
         let outStockFilter=[]
       let filterSelctor = filterelements.filter(element=>element.checked)
-          filterSelctor.map(rate=>{
-            if(rate.hasAttribute("rating") ){
-              ratingFilter.push(parseInt(rate.getAttribute("rating")))
-              rateSelector= [...ratingFilter]
-              }
-          })
-          filterSelctor.map(cate=>{
-            if( cate.hasAttribute("category")){
-            categoryFilter.push(cate.getAttribute("category"))
-            categorySelctor= [...categoryFilter]
+      if(filterSelctor){
+        filterSelctor.map(rate=>{
+          if(rate.hasAttribute("rating") ){
+            ratingFilter.push(parseInt(rate.getAttribute("rating")))
+            rateSelector= [...ratingFilter]
             }
-          })
-          filterSelctor.map(brand=>{
-              if(brand.hasAttribute("brand")){
-                brandFilter.push(brand.getAttribute("brand"))
-                brandSelector= [...brandFilter]
-              }
-          })
-          filterSelctor.map(stock=>{
-            if(stock.hasAttribute("stock")){
-            stockFilter.push(arr.filter(product=> product.stock> 0))
-            console.log(stockFilter)
-            stockFilter= [...stockFilter]
+        })
+        filterSelctor.map(cate=>{
+          if( cate.hasAttribute("category")){
+          categoryFilter.push(cate.getAttribute("category"))
+          categorySelctor= [...categoryFilter]
+          }
+        })
+        filterSelctor.map(brand=>{
+            if(brand.hasAttribute("brand")){
+              brandFilter.push(brand.getAttribute("brand"))
+              brandSelector= [...brandFilter]
             }
-          })
+        })
+        filterSelctor.map(stock=>{
+          if(stock.hasAttribute("stock")){
+          stockFilter.push(arr.filter(product=> product.stock> 0))
+          console.log(stockFilter)
+          stockFilter= [...stockFilter]
+          }
+        })
 
-          filterSelctor.map(outstock=>{
-            if(outstock.hasAttribute("stock")){
-            outStockFilter.push(arr.filter(product=> product.stock == 0))
-            outStockSelector= [...outStockFilter]
-            }
-          })
+        filterSelctor.map(outstock=>{
+          if(outstock.hasAttribute("stock")){
+          outStockFilter.push(arr.filter(product=> product.stock == 0))
+          outStockSelector= [...outStockFilter]
+          }
+        })
 
-      console.log(categorySelctor)
-      console.log(priceSelector)
+    console.log(categorySelctor)
+    console.log(priceSelector)
 
-      getMainFilterArr(arr,categorySelctor,brandSelector,stockSelector,outStockSelector,priceSelector,rateSelector)
+    getMainFilterArr(arr,categorySelctor,brandSelector,stockSelector,outStockSelector,priceSelector,rateSelector)
+      }else{
+        drawPagination(arr.length,20);
+        dynmicList = [...arr]
+        displayedProdecuts=dynmicList.slice(1,21)
+        drawData(displayedProdecuts)
+      }
     })
   })
   let minPrice = document.querySelector(".price #from")
@@ -328,14 +336,21 @@ function getMainFilterArr(products,category,brand,stock,outstock,price,rate){
   console.log(mainFilterArr)
   // , console.log(parseInt(price[0].max) >= product.price >=parseInt(price[0].min))
   if(mainFilterArr==""){
-    drawData(products)
-
+    drawPagination(products.length,20);
+    dynmicList = [...products]
+    displayedProdecuts=dynmicList.slice(1,21)
+    drawData(displayedProdecuts)
   }else{
-    drawData(mainFilterArr)
+    drawPagination(mainFilterArr.length,20);
+    dynmicList = [...mainFilterArr]
+    displayedProdecuts=dynmicList.slice(1,21)
+    drawData(displayedProdecuts)
     selectedSort.addEventListener("change",()=>{
-      console.log("hiudshfuh")
       sortProduct(mainFilterArr,selectedSort.value)
-      drawData(mainFilterArr)
+      drawPagination(mainFilterArr.length,20);
+      dynmicList = [...mainFilterArr]
+      displayedProdecuts=dynmicList.slice(1,21)
+      drawData(displayedProdecuts)
     })
   }
 }
@@ -386,18 +401,28 @@ function search(arr){
   searchInput.addEventListener("input",()=>{
     switch(seacrchType.value){
       case "search by name":
-        let searchedProductsByName = arr.filter((product)=>  product.title.toLowerCase().includes(searchInput.value.toLowerCase()))
-        drawData(searchedProductsByName)
+        let searchedProductsByName = arr.filter((product)=>  product.title.toLowerCase().includes(searchInput.value.toLowerCase()));
+        drawPagination(searchedProductsByName.length,20);
+        dynmicList = [...searchedProductsByName]
+        displayedProdecuts=dynmicList.slice(1,21)
+        drawData(displayedProdecuts)
         break;
       case "search by category":
-        let searchedProductsByCate = arr.filter((product)=>  product.category.toLowerCase().includes(searchInput.value.toLowerCase()))
-        drawData(searchedProductsByCate)
+        let searchedProductsByCate = arr.filter((product)=>  product.category.toLowerCase().includes(searchInput.value.toLowerCase()));
+        drawPagination(searchedProductsByCate.length,20);
+        dynmicList = [...searchedProductsByCate]
+        displayedProdecuts=dynmicList.slice(1,21)
+        drawData(displayedProdecuts)
         break;
         case "search by brand":
-          let searchedProductsByBrand = arr.filter((product)=>  product.brand.toLowerCase().includes(searchInput.value.toLowerCase()))
-          drawData(searchedProductsByBrand)
+          let searchedProductsByBrand = arr.filter((product)=>  product.brand.toLowerCase().includes(searchInput.value.toLowerCase()));
+          drawPagination(searchedProductsByBrand.length,20);
+          dynmicList = [...searchedProductsByBrand]
+          displayedProdecuts=dynmicList.slice(1,21)
+          drawData(displayedProdecuts)
           break;
       default :
+      drawPagination(arr.length,20);
       drawData(arr)
     }
   })
@@ -684,7 +709,7 @@ function next(btn){
       pages[currentPage-1].classList.add("active")
       let start = (currentPage-1)*itemPerPage;
       let end   = start+itemPerPage;
-      displayedProdecuts = productsFetchedFromApi.slice(start,end)
+      displayedProdecuts = dynmicList.slice(start,end)
       drawData(displayedProdecuts)
       btn.classList.remove('d-none')
     }if(currentPage==pages.length){
@@ -701,7 +726,7 @@ function back(btn){
       pages[currentPage-1].classList.add("active")
       let start = (currentPage-1)*itemPerPage;
       let end   = start+itemPerPage;
-      displayedProdecuts = productsFetchedFromApi.slice(start,end)
+      displayedProdecuts = dynmicList.slice(start,end)
       drawData(displayedProdecuts)
     }if(currentPage==1){
       btn.classList.add('d-none')    }
@@ -721,7 +746,7 @@ function pagination(btn){
           currentPage = parseInt(btn.textContent)
           let start = (currentPage-1)*itemPerPage;
           let end   = start+itemPerPage;
-          displayedProdecuts = productsFetchedFromApi.slice(start,end)
+          displayedProdecuts = dynmicList.slice(start,end)
           drawData(displayedProdecuts)
 }
 
@@ -729,18 +754,25 @@ function pagination(btn){
 function drawPagination(length,perPage){
   let paginationPlace = document.querySelector(".pagination") 
 let pages = Math.ceil(length/perPage)
-paginationPlace.innerHTML = `
-<li class="page-item "  style="cursor:pointer">
-<a class="page-link back" onclick="back(this)">Previous</a>
-</li>`
-for(let i = 1 ; i<=pages ; i++){
-  paginationPlace.innerHTML += `
-  <li class="page-item"><a class="page-link page"  style="cursor:pointer" onclick="pagination(this)">${i}</a></li>
-  `}
-  paginationPlace.innerHTML += `
-<li class="page-item">
-<a class="page-link next" onclick="next(this)" style="cursor:pointer">Next</a>
-</li>`
+paginationPlace.innerHTML=``
+if(pages > 1){
+  paginationPlace.innerHTML = `
+  <li class="page-item "  style="cursor:pointer">
+  <a class="page-link back" onclick="back(this)">Previous</a>
+  </li>`
+  for(let i = 1 ; i<=pages ; i++){
+    paginationPlace.innerHTML += `
+    <li class="page-item"><a class="page-link page"  style="cursor:pointer" onclick="pagination(this)">${i}</a></li>
+    `}
+    paginationPlace.innerHTML += `
+  <li class="page-item">
+  <a class="page-link next" onclick="next(this)" style="cursor:pointer">Next</a>
+  </li>`
+  let page =Array.from(document.querySelectorAll(".page")) 
+page[0].classList.add("active")
+}
+
+
 }
 
 // let darkMode = document.querySelector(".dark")

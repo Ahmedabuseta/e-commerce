@@ -66,7 +66,9 @@
     #filter{
         display: none !important;
     }
-
+    #carouselExample,.carousel-item img{
+        height: 45vh !important;
+    } 
 }
 @media (min-width:979px) {
     .filter-mob{
